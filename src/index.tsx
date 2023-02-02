@@ -1,13 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Antd from "./Demo/Antd";
+import reportWebVitals from "./reportWebVitals";
+import "antd/dist/antd.min.css"; // or 'antd/dist/antd.less'
+import Formt from "./Demo/JestDomAssert/formt";
+import AntdDemo from "./Demo/JestDomAssert/antd4";
+import DebounceButton from "./Demo/EventMock";
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    123
+    <Antd />
+    <Formt />
+    <AntdDemo />
+    <DebounceButton
+      onClick={() => {
+        console.log("do");
+      }}
+    />
   </React.StrictMode>
 );
 

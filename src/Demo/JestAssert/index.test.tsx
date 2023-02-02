@@ -1,8 +1,8 @@
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
 //  常见断言demo
-describe('Common Assertion', () => {
-  test('基础类型比较', () => {
+describe("Common Assertion", () => {
+  test("基础类型比较", () => {
     let a;
     let b = 1;
     // toBe
@@ -31,8 +31,8 @@ describe('Common Assertion', () => {
     expect(1 + 1).not.toBe(3);
   });
 
-  test('引用类型比较', () => {
-    const a = { obj: { name: 'n1', age: 10 }, obj2: { name: 'n2', age: 19 } };
+  test("引用类型比较", () => {
+    const a = { obj: { name: "n1", age: 10 }, obj2: { name: "n2", age: 19 } };
     const b = Object.assign(a);
     const c = JSON.parse(JSON.stringify(a));
     // toBe 对引用类型进行比较时只会比较内存地址
@@ -43,7 +43,7 @@ describe('Common Assertion', () => {
     expect(a).toEqual(c);
   });
 
-  test('数字比较', () => {
+  test("数字比较", () => {
     expect(1).toBeGreaterThan(0);
     expect(1).toBeGreaterThanOrEqual(1);
     expect(1).toBeLessThan(2);
@@ -51,17 +51,17 @@ describe('Common Assertion', () => {
     expect(0.2 + 0.1).toBeGreaterThan(0.3);
   });
 
-  test('正则比较', () => {
+  test("正则比较", () => {
     // Match
-    expect('This is a Match').toMatch(/Match/);
+    expect("This is a Match").toMatch(/Match/);
 
     // toMatchObject 验证对象能否包含 value 的全部属性，即 value 是否是匹配对象的子集
-    const obj = { prop1: 'test', prop2: 'regexp validation' };
-    const childObj = { prop1: 'test' };
+    const obj = { prop1: "test", prop2: "regexp validation" };
+    const childObj = { prop1: "test" };
     expect(obj).toMatchObject(childObj);
   });
 
-  test('表单验证', () => {
+  test("表单验证", () => {
     //toContain 某值是否存在数组中
     expect([1, 2, 3]).toContain(2);
     // arrayContaining 匹配接收到的数组，与 toEqual 结合使用可以用于判定某个数组是否是另一个数组的子集。
@@ -74,15 +74,15 @@ describe('Common Assertion', () => {
     //toHaveLength  断言数组长度
     expect([1, 2, 3, 4, 7]).toHaveLength(5);
     //toHaveProperty  断言对象是否包含某个属性
-    expect({ a: 1, b: 2 }).toHaveProperty('a');
-    expect({ a: 1, b: 2 }).toHaveProperty('a', 1);
-    expect({ a: { c: 3, d: { e: 5 } }, b: 2 }).toHaveProperty('a.d.e', 5);
+    expect({ a: 1, b: 2 }).toHaveProperty("a");
+    expect({ a: 1, b: 2 }).toHaveProperty("a", 1);
+    expect({ a: { c: 3, d: { e: 5 } }, b: 2 }).toHaveProperty("a.d.e", 5);
   });
 
-  test('error', () => {
+  test("error", () => {
     // toThrow 是 toThrowError 的别名 两者等同
     const throwError = () => {
-      const err = new Error('console err: this is a test error!');
+      const err = new Error("console err: this is a test error!");
       throw err;
     };
     expect(throwError).toThrow();
@@ -90,7 +90,7 @@ describe('Common Assertion', () => {
 
     const catchError = () => {
       try {
-        const err = new Error('console err: this is a test error!');
+        const err = new Error("console err: this is a test error!");
         throw err;
       } catch (err) {
         console.log(err);
@@ -101,9 +101,17 @@ describe('Common Assertion', () => {
   });
 });
 
-const toBeWithinRange = (actual: number, floor: number = 0, ceiling: number = 100) => {
-  if (typeof actual !== 'number' || typeof floor !== 'number' || typeof ceiling !== 'number') {
-    throw new Error('These must be of type number!');
+const toBeWithinRange = (
+  actual: number,
+  floor: number = 0,
+  ceiling: number = 100
+) => {
+  if (
+    typeof actual !== "number" ||
+    typeof floor !== "number" ||
+    typeof ceiling !== "number"
+  ) {
+    throw new Error("These must be of type number!");
   }
   const pass = actual >= floor && actual <= ceiling;
   if (pass) {
@@ -118,21 +126,29 @@ const toBeWithinRange = (actual: number, floor: number = 0, ceiling: number = 10
     };
   }
 };
-describe('自定义同步匹配器', () => {
+describe("自定义同步匹配器", () => {
   expect.extend({
     toBeWithinRange,
   });
 
-  test('is within range', () => expect(100).toBeWithinRange(90, 110));
+  test("is within range", () => expect(100).toBeWithinRange(90, 110));
 
-  test('is NOT within range', () => expect(6).not.toBeWithinRange(0, 5));
+  test("is NOT within range", () => expect(6).not.toBeWithinRange(0, 5));
 
-  test('is within range2', () => expect(50).toBeWithinRange());
+  test("is within range2", () => expect(50).toBeWithinRange());
 });
 
-const toBeAsyncWithinRange = async (actual: number, floor: number = 0, ceiling: number = 100) => {
-  if (typeof actual !== 'number' || typeof floor !== 'number' || typeof ceiling !== 'number') {
-    throw new Error('These must be of type number!');
+const toBeAsyncWithinRange = async (
+  actual: number,
+  floor: number = 0,
+  ceiling: number = 100
+) => {
+  if (
+    typeof actual !== "number" ||
+    typeof floor !== "number" ||
+    typeof ceiling !== "number"
+  ) {
+    throw new Error("These must be of type number!");
   }
   let res = new Promise<{ message: () => string; pass: boolean }>((resolve) => {
     const pass = actual >= floor && actual <= ceiling;
@@ -151,12 +167,14 @@ const toBeAsyncWithinRange = async (actual: number, floor: number = 0, ceiling: 
   return res;
 };
 
-describe('自定义异步匹配器', () => {
+describe("自定义异步匹配器", () => {
   expect.extend({
     toBeAsyncWithinRange,
   });
 
-  test('is within range', async () => await expect(100).toBeAsyncWithinRange(90, 110));
-  test('is NOT within range', async () => await expect(6).not.toBeAsyncWithinRange(0, 5));
-  test('is within range2', async () => await expect(50).toBeAsyncWithinRange());
+  test("is within range", async () =>
+    await expect(100).toBeAsyncWithinRange(90, 110));
+  test("is NOT within range", async () =>
+    await expect(6).not.toBeAsyncWithinRange(0, 5));
+  test("is within range2", async () => await expect(50).toBeAsyncWithinRange());
 });
