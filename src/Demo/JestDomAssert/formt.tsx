@@ -1,9 +1,10 @@
-import { Form, Input, Radio } from "antd";
 import React from "react";
 
 const Formt = () => {
   return (
     <form aria-label="form">
+      <button>按钮</button>
+      <button>按钮2</button>
       <input
         type="text"
         className="classTest"

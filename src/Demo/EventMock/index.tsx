@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, message } from "antd";
 import React from "react";
 
 function debounce(func: () => void, delay: number) {
@@ -16,7 +16,19 @@ export interface buttonProps {
   onClick: () => void;
 }
 const DebounceButton = ({ onClick }: buttonProps) => {
-  return <Button onClick={debounce(onClick, 200)}>button</Button>;
+  const error = () => {
+    message.error("this is a error");
+  };
+  return (
+    <React.Fragment>
+      <Button data-testid="but1" onClick={debounce(onClick, 200)}>
+        button
+      </Button>
+      <Button data-testid="but2" onClick={error}>
+        massage
+      </Button>
+    </React.Fragment>
+  );
   // return <Button onClick={onClick}>button</Button>;
 };
 

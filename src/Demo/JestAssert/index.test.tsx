@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom";
+import { message } from "antd";
 
 //  常见断言demo
 describe("Common Assertion", () => {
@@ -10,6 +11,7 @@ describe("Common Assertion", () => {
     expect(true).toBe(true);
     expect(false).toBe(false);
     expect(NaN).toBe(NaN);
+    expect(+0).not.toBe(-0);
     expect(undefined).toBe(undefined);
     expect(a).toBe(undefined);
     expect(null).toBe(null);
@@ -58,13 +60,16 @@ describe("Common Assertion", () => {
     // toMatchObject 验证对象能否包含 value 的全部属性，即 value 是否是匹配对象的子集
     const obj = { prop1: "test", prop2: "regexp validation" };
     const childObj = { prop1: "test" };
+    const childObj2 = { prop1: "test", prop3: "123" };
     expect(obj).toMatchObject(childObj);
+    // expect(childObj).not.toMatchObject(obj);
+    expect(obj).not.toMatchObject(childObj2);
   });
 
   test("表单验证", () => {
     //toContain 某值是否存在数组中
     expect([1, 2, 3]).toContain(2);
-    // arrayContaining 匹配接收到的数组，与 toEqual 结合使用可以用于判定某个数组是否是另一个数组的子集。
+    //! arrayContaining 匹配接收到的数组，与 toEqual 结合使用可以用于判定某个数组是否是另一个数组的子集。
     expect([1, 2, 3]).toEqual(expect.arrayContaining([1, 2]));
     // toContainEqual(value) 用于判定某个对象元素是否在数组中。
     expect([

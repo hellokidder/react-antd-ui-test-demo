@@ -27,6 +27,7 @@ describe("表单", () => {
   it("disabled", () => {
     render(<Formt />);
     const dom = screen.getByTestId("inp1");
+    // const but = screen.getByRole("button");
     const dom2 = screen.getByTestId("inp2");
     expect(dom).toBeDisabled();
     expect(dom).not.toBeEnabled();

@@ -6,6 +6,7 @@ import "antd/dist/antd.min.css"; // or 'antd/dist/antd.less'
 import Formt from "./Demo/JestDomAssert/formt";
 import AntdDemo from "./Demo/JestDomAssert/antd4";
 import DebounceButton from "./Demo/EventMock";
+import QueryDom from "./Demo/QueryDom";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -19,6 +20,7 @@ root.render(
         console.log("do");
       }}
     />
+    <QueryDom />
   </React.StrictMode>
 );
 
